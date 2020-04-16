@@ -1,0 +1,2 @@
+# MPI-test
+ learn MPI
