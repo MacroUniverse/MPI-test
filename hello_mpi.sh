@@ -12,6 +12,6 @@ if [ $? -ne 0 ]; then
   exit
 fi
 rm hello_mpi.o
-mv a.out $HOME/bincpp/hello_mpi
+mv a.out hello_mpi
 #
 echo "Normal end of execution."
