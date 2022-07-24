@@ -38,9 +38,13 @@ int main (int argc, char *argv[])
     exit(1);
   }
   // Get the number of processes.
-  ierr = MPI_Comm_size ( MPI_COMM_WORLD, &p );
+  ierr = MPI_Comm_size(MPI_COMM_WORLD, &p);
+  if (p == 1) {
+    cout << "only 1 process is used! Please run `mpiexec -np 4 ./hello_mpi`. Exiting..." << endl;
+    exit(1);
+  }
   // Get the individual process ID.
-  ierr = MPI_Comm_rank ( MPI_COMM_WORLD, &id );
+  ierr = MPI_Comm_rank(MPI_COMM_WORLD, &id);
   // Process 0 prints an introductory message.
   if (id == 0) {
     timestamp ( );
@@ -57,16 +61,16 @@ int main (int argc, char *argv[])
     wtime = MPI_Wtime();
   cout << "P" << id << ":    'Hello, world!'\n";
 //  Process 0 says goodbye.
-  if ( id == 0 ) {
-    wtime = MPI_Wtime ( ) - wtime;
+  if (id == 0) {
+    wtime = MPI_Wtime() - wtime;
     cout << "P" << id << ":    Elapsed wall clock time = " << wtime << " seconds.\n";
   }
-  MPI_Finalize ( );
+  MPI_Finalize();
 //  Terminate.
   if (id == 0) {
     cout << "\n";
     cout << "P" << id << ":  HELLO_MPI:\n";
-    cout << "P" << id << ":    Normal end of execution.\n";
+    cout << "P" << id << ":  Normal end of execution.\n";
     cout << "\n";
     timestamp();
   }
