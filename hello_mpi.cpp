@@ -47,7 +47,7 @@ int main (int argc, char *argv[])
   ierr = MPI_Comm_rank(MPI_COMM_WORLD, &id);
   // Process 0 prints an introductory message.
   if (id == 0) {
-    timestamp ( );
+    timestamp();
     cout << "\n";
     cout << "P" << id << ":  HELLO_MPI - Master process:\n";
     cout << "P" << id << ":    C++/MPI version\n";

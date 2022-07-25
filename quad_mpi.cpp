@@ -75,10 +75,10 @@ int main(int argc, char *argv[])
       my_a = ((double)(p - q)*a + (double)(q - 1)*b) / (double)(p - 1);
 	  my_b = ((double)(p - q - 1)*a + (double)q*b) / (double)(p - 1);
       target = q;
-      tag = 1;
-      MPI_Send(&my_a, 1, MPI_DOUBLE, target, tag, MPI_COMM_WORLD);
+      tag = 1; int count = 1;
+      MPI_Send(&my_a, count, MPI_DOUBLE, target, tag, MPI_COMM_WORLD);
       tag = 2;
-      MPI_Send(&my_b, 1, MPI_DOUBLE, target, tag, MPI_COMM_WORLD);
+      MPI_Send(&my_b, count, MPI_DOUBLE, target, tag, MPI_COMM_WORLD);
     }
     total = 0.0;
     my_total = 0.0;
@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
     cout << "QUAD_MPI:\n";
     cout << "  Normal end of execution.\n";
     cout << "\n";
-    timestamp ( );
+    timestamp();
   }
   return 0;
 }
