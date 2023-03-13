@@ -35,6 +35,7 @@ int main (int argc, char *argv[])
     cout << "\n";
     cout << "HELLO_MPI - Fatal error!\n";
     cout << "  MPI_Init returned nonzero ierr.\n";
+    cout.flush();
     exit(1);
   }
   // Get the number of processes.
@@ -55,15 +56,17 @@ int main (int argc, char *argv[])
     cout << "\n";
     cout << "P" << id << ":    The number of processes is " << p << "\n";
     cout << "\n";
+    cout.flush();
   }
 //  Every process prints a hello.
   if (id == 0)
     wtime = MPI_Wtime();
-  cout << "P" << id << ":    'Hello, world!'\n";
+  cout << "P" << id << ":    'Hello, world!'\n"; cout.flush();
 //  Process 0 says goodbye.
   if (id == 0) {
     wtime = MPI_Wtime() - wtime;
     cout << "P" << id << ":    Elapsed wall clock time = " << wtime << " seconds.\n";
+    cout.flush();
   }
   MPI_Finalize();
 //  Terminate.
@@ -72,6 +75,7 @@ int main (int argc, char *argv[])
     cout << "P" << id << ":  HELLO_MPI:\n";
     cout << "P" << id << ":  Normal end of execution.\n";
     cout << "\n";
+    cout.flush();
     timestamp();
   }
   return 0;
